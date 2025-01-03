@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        .navBar {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h2 {
+            margin-left: 22%;
+            margin-bottom: 20px;
+        }
+
+        .inputs {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: row;
+            width: 50%;
+            margin: 20px auto;
+        }
+
+        .table {
+            width: 75%;
+            margin: 0 auto;
+        }
+
+        .navbar-nav {
+
+        }
+    </style>
+</head>
+<body>
+<div class="navBar">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary w-100">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav w-100 justify-content-center">
+                    <a class="nav-link active" aria-current="page" href="#customer">Customer</a>
+                    <a class="nav-link" href="#item">Item</a>
+                    <a class="nav-link" href="#">Place Order</a>
+                    <a class="nav-link" href="#">Report</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<!-- Customer Form -->
+<section id="customer">
+    <h1>Customer Form</h1>
+
+    <div class="inputs">
+        <form>
+            <div class="mb-3">
+                <label for="ID" class="form-label">ID</label>
+                <input type="text" class="form-control" id="ID">
+            </div>
+            <div class="mb-3">
+                <label for="Name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="Name">
+            </div>
+            <div class="mb-3">
+                <label for="Address" class="form-label">Address</label>
+                <input type="text" class="form-control" id="Address">
+            </div>
+
+            <div class="buttons text-center">
+                <button type="button" id="btn_add" class="btn btn-success ms-3">ADD</button>
+                <button type="button" id="btn_update" class="btn btn-primary ms-3">UPDATE</button>
+                <button type="button" id="btn_load" class="btn btn-secondary ms-3">LOAD</button>
+                <button type="button" id="btn_delete" class="btn btn-danger ms-3">DELETE</button>
+            </div>
+        </form>
+
+    </div>
+
+    <h2 class="mt-4">Customer List</h2>
+
+    <div class="table">
+        <table class="table table-hover">
+            <thead>
+            <tr class="text-center">
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Address</th>
+            </tr>
+            </thead>
+            <tbody id="customer_tbody" class="text-center">
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- Item Form -->
+<section id="item">
+    <h1>Item Form</h1>
+    <div class="content">
+        <!-- Form -->
+        <form class="row g-3 w-50 mx-auto" id="stockForm">
+            <div class="col-md-6">
+                <label for="itemCode" class="form-label">Item Code</label>
+                <input type="text" class="form-control" id="itemCode"/>
+                <h6
+                        class="invalidCode text-danger fw-400 position-absolute"
+                ></h6>
+            </div>
+            <div class="col-md-6">
+                <label for="itemName" class="form-label">Item Name</label>
+                <input type="text" class="form-control" id="itemName"/>
+                <h6
+                        class="invalidName text-danger fw-400 position-absolute"
+                ></h6>
+            </div>
+            <div class="col-12">
+                <label for="itemPrice" class="form-label">Price</label>
+                <input
+                        type="currency"
+                        class="form-control"
+                        id="itemPrice"
+                        placeholder="$"
+                />
+                <h6
+                        class="invalidPrice text-danger fw-400 position-absolute"
+                ></h6>
+            </div>
+            <div class="col-12">
+                <label for="itemQty" class="form-label">Quantity</label>
+                <input type="number" class="form-control" id="itemQty"/>
+                <h6
+                        class="invalidQty text-danger fw-400 position-absolute"
+                ></h6>
+            </div>
+
+            <!---------- Buttons ---------->
+
+            <div class="d-flex justify-content-evenly">
+                <button
+                        type="submit"
+                        class="btn btn-success"
+                        style="width: 100px"
+                        id="addBtn"
+                >
+                    Add
+                </button>
+
+                <button
+                        type="submit"
+                        class="btn btn-warning"
+                        style="width: 100px"
+                        id="updateBtn"
+                >
+                    Update
+                </button>
+
+                <button
+                        type="submit"
+                        class="btn btn-danger"
+                        style="width: 100px"
+                        id="deleteBtn"
+                >
+                    Delete
+                </button>
+
+                <button
+                        type="button"
+                        class="btn btn-dark"
+                        style="width: 100px"
+                        id="clearBtn"
+                >
+                    Clear
+                </button>
+            </div>
+        </form>
+        <!-- Table -->
+        <table
+                class="table table-striped table-hover mx-auto mt-5 text-center w-75"
+        >
+            <thead>
+            <tr>
+                <th scope="col">Item Code</th>
+                <th scope="col">Item Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+            </tr>
+            <tbody id="item_tbody"></tbody>
+            </thead>
+        </table>
+    </div>
+</section>
+
+<script src="js/jquery-3.7.1.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous">
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const sections = document.querySelectorAll("section");
+
+        // Hide all sections
+        function hideAllSections() {
+            sections.forEach((section) => {
+                section.style.display = "none";
+            });
+        }
+
+        // Show specific section
+        function showSection(targetSectionId) {
+            hideAllSections();
+            const targetSection = document.querySelector(targetSectionId);
+            if (targetSection) {
+                targetSection.style.display = "block";
+            }
+        }
+
+        // Load last visited section or default to #customer
+        const lastVisited =
+            localStorage.getItem("lastVisitedSection") || "#customer";
+        showSection(lastVisited);
+
+        // Add click events to navigation links
+        document.querySelectorAll(".nav-link").forEach((link) => {
+            link.addEventListener("click", function (event) {
+                event.preventDefault();
+
+                const targetSectionId = this.getAttribute("href");
+
+                // Show the selected section
+                showSection(targetSectionId);
+
+                // Save the last visited section in local storage
+                localStorage.setItem("lastVisitedSection", targetSectionId);
+
+                // Update document title based on section
+                switch (targetSectionId) {
+                    case "#customer":
+                        document.title = "Customer Form";
+                        break;
+                    case "#item":
+                        document.title = "Item Form";
+                        break;
+                    default:
+                        document.title = "Form";
+                        break;
+                }
+            });
+        });
+    })
+
+    //Customer Form Functions
+    // Attach click event listener to the table body rows
+    $('#customer_tbody').on('click', 'tr', function () {
+        const id = $(this).find('td:nth-child(1)').text();
+        const name = $(this).find('td:nth-child(2)').text();
+        const address = $(this).find('td:nth-child(3)').text();
+
+        $('#ID').val(id);
+        $('#Name').val(name);
+        $('#Address').val(address);
+    });
+
+    //get all customers
+    const fetchCustomerData = () => {
+        $.ajax({
+            url: "http://localhost:8080/Application1_Web_exploded/customer",
+            type: 'GET',
+            success: (res) => {
+                $('#customer_tbody').empty();
+                res.forEach((customer) => {
+                    $('#customer_tbody').append(
+                        <tr>
+                            <td>${customer.id}</td>
+                            <td>${customer.name}</td>
+                            <td>${customer.address}</td>
+                        </tr>)
+                })
+            },
+            error: (error) => {
+                console.log(error)
+            }
+        })
+    }
+
+    //load data
+    $('#btn_load').click((e) => {
+        e.preventDefault()
+
+        const id = $('#id').val()
+        const name = $('#name').val()
+        const address = $('#address').val()
+
+        $.ajax({
+                url: "http://localhost:8080/Application1_Web_exploded/customer",
+                type: 'GET',
+                data: {
+                    name: id,
+                    email: name,
+                    age: address,
+                    success: () => {
+                        fetchCustomerData()
+                    }
+                }
+            }
+        )
+    })
+
+    //add data
+    $('#btn_add').click((e) => {
+        e.preventDefault()
+
+        const id = $('#ID').val()
+        const name = $('#Name').val()
+        const address = $('#Address').val()
+
+        $.ajax({
+                url: "http://localhost:8080/Application1_Web_exploded/customer",
+                type: 'POST',
+                data: {id, name, address},
+                success: (res) => {
+                    fetchCustomerData()
+                    $('#ID').val("")
+                    $('#Name').val("")
+                    $('#Address').val("")
+                },
+                error: (error) => {
+                    console.log(error)
+                }
+            }
+        )
+    })
+
+    //update data
+    $('#btn_update').click((e) => {
+        e.preventDefault()
+
+        const id = $('#ID').val()
+        const name = $('#Name').val()
+        const address = $('#Address').val()
+
+        $.ajax({
+                url: `http://localhost:8080/Application1_Web_exploded/customer?id=${id}&name=${name}&address=${address}`,
+                type: 'PUT',
+                data: {id, name, address},
+                success: (res) => {
+                    console.log("updated")
+                    fetchCustomerData()
+                    $('#ID').val("")
+                    $('#Name').val("")
+                    $('#Address').val("")
+                },
+                error: (error) => {
+                    console.log(error)
+                }
+            }
+        )
+    })
+
+    //delete data
+    $('#btn_delete').click((e) => {
+        e.preventDefault()
+
+        const id = $('#ID').val()
+
+        if (confirm("Are you sure you want to delete this customer?")) {
+            $.ajax({
+                    url: `http://localhost:8080/Application1_Web_exploded/customer?id=${id}`,
+                    type: 'DELETE',
+                    success: (res) => {
+                        alert("Customer deleted successfully...!")
+                        fetchCustomerData()
+                        $('#ID').val("")
+                        $('#Name').val("")
+                        $('#Address').val("")
+                    },
+                    error: (error) => {
+                        console.log(error)
+                    }
+                }
+            )
+        }
+    })
+
+    fetchCustomerData()
+
+    //Item Form Functions
+    // Attach click event listener to the table body rows
+    $('#customer_tbody').on('click', 'tr', function () {
+        const code = $(this).find('td:nth-child(1)').text();
+        const name = $(this).find('td:nth-child(2)').text();
+        const price = $(this).find('td:nth-child(3)').text();
+        const qty = $(this).find('td:nth-child(4)').text();
+
+        $('#itemCode').val(code);
+        $('#itemName').val(name);
+        $('#itemPrice').val(price);
+        $('#itemQty').val(qty);
+    });
+
+    //get all items
+    const fetchItemData = () => {
+        $.ajax({
+            url: "http://localhost:8080/Application1_Web_exploded/item",
+            type: 'GET',
+            success: (res) => {
+                $('#item_tbody').empty();
+                res.forEach((item) => {
+                    $('#item_tbody').append(
+                        <tr>
+                            <td>${item.code}</td>
+                            <td>${item.name}</td>
+                            <td>${item.price}</td>
+                            <td>${item.qty}</td>
+                        </tr>)
+                })
+            },
+            error: (error) => {
+                console.log(error)
+            }
+        })
+    }
+
+    // load data
+    $()
+</script>
+</body>
+</html>

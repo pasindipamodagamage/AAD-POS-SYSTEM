@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Application</title>
+</head>
+<body>
+<h1>My Application</h1>
+<button id="btn">Send a request</button>
+<script src="assests/js/jquery-3.7.1.min.js"></script>
+<script>
+    $("#btn").click(function () {
+        // start the ajax request process with jQuery
+        $.ajax({
+            url: "http://localhost:8080/HelloServelet_Web_exploded/hello",
+        })
+    })
+</script>
+</body>
+</html>
